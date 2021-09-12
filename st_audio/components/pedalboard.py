@@ -1,15 +1,32 @@
 import streamlit as st
 
-from . import utils
-from pedalboard import (Chorus, Compressor, Convolution, Gain, LadderFilter,
-                        Limiter, Pedalboard, Phaser, Reverb)
+from pedalboard import Pedalboard
 
+from . import plugins, utils
 
 def load():
     if st.session_state.input_data is not None:
         audio, sample_rate = utils._load_audio(st.session_state.input_data)        
-        
+        # Summarize current pedalboard
+        if len(st.session_state.board):
+            st.write('### Plugins on board:')
+            st.write(' ➞ '.join([p.name for p in st.session_state.board]))
+            if st.button('♻️ Clean board'):
+                st.session_state.board = []
+                st.experimental_rerun()
+        else:
+            st.write('Empty board 🙃')
 
+        # Create pedalboard
+        left, right = st.columns((1, 10))
+        with right:
+            name = st.selectbox('New plugin', options=['...'] + plugins.all())
+            if name != '...':
+                plugin = plugins.make(name)
+        with left:
+            if (name != '...') and st.button('+'):
+                st.session_state.board.append(plugin)
+                st.experimental_rerun()
 
 
 

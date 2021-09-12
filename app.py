@@ -6,8 +6,8 @@ from st_audio.components import analyzer, pedalboard, sidebar
 st.set_page_config(page_title='st-audio')
 
 # Initialize session state
-for key in ['input_data']:
-    _ = st.session_state.setdefault(key, None)
+_ = st.session_state.setdefault('input_data', None)
+_ = st.session_state.setdefault('board', [])
 
 # Render main app
 page = sidebar.load()
