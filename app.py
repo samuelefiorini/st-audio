@@ -7,6 +7,7 @@ st.set_page_config(page_title='st-audio')
 
 # Initialize session state
 _ = st.session_state.setdefault('input_data', None)
+_ = st.session_state.setdefault('output_data', None)
 _ = st.session_state.setdefault('board', [])
 
 # Render main app

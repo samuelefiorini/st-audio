@@ -18,3 +18,7 @@ def _load_audio(data: 'UploadedFile') -> Union[np.array, int]:
         Union[np.array, int]: audio data and sample rate
     """
     return sf.read(data)
+
+#def _dump_audio(data:)
+#with sf.SoundFile('./processed-output-stereo.wav', 'w', samplerate=sample_rate, channels=len(effected.shape)) as f:
+#    f.write(effected)
