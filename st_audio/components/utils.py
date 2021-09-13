@@ -19,6 +19,14 @@ def _load_audio(data: 'UploadedFile') -> Union[np.array, int]:
     """
     return sf.read(data)
 
-#def _dump_audio(data:)
-#with sf.SoundFile('./processed-output-stereo.wav', 'w', samplerate=sample_rate, channels=len(effected.shape)) as f:
-#    f.write(effected)
+def dump_audio(filename: str, data: np.array, sample_rate: float) -> None:
+    """Dump audio data to wav file.
+
+    Args:
+        filename (str): Wav file name
+        data (np.array): Audio data.
+        sample_rate (float): Sample rate (Hz)
+    """
+    sf.write(filename, data, sample_rate)
+    #with sf.SoundFile(filename, 'w', samplerate=sample_rate, channels=len(data.shape)) as f:
+    #    f.write(data)
