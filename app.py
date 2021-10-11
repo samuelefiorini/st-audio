@@ -7,7 +7,6 @@ import viz
 from plugins import plugins
 
 
-#@st.cache
 def load_audio(filename: str) -> tuple:
     """Load input audio file.
 
@@ -20,7 +19,6 @@ def load_audio(filename: str) -> tuple:
     return sf.read(filename)
 
 
-#@st.cache
 def run_board(effects: list, audio: np.array, sample_rate: float) -> np.array:
     """Run board on input audio data.
 
@@ -37,7 +35,14 @@ def run_board(effects: list, audio: np.array, sample_rate: float) -> np.array:
 
 # Make pedalboard in sidebar
 pedalboard = {}
-st.sidebar.title('⚡ Pedalboard')
+st.sidebar.markdown('''
+    <a href="https://github.com/spotify/pedalboard">
+        <img src="https://user-images.githubusercontent.com/213293/131147303-4805181a-c7d5-4afe-afb2-f591a4b8e586.png" width=305, height=62/>
+    </a>
+    ''',
+    unsafe_allow_html=True
+)
+st.sidebar.markdown("***")
 for key, builder in plugins.items():
     with st.sidebar.expander(key, expanded=False):
         help, effect = builder()
