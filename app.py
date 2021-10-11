@@ -68,7 +68,7 @@ if audio_file is not None:
         output_audio_data = run_board(effects, input_audio_data, sample_rate)
 
         # Write the audio back as a wav file:
-        filename = f'./data/processed-{audio_file}.wav'
+        filename = './data/processed.wav'
         with sf.SoundFile(filename, 'w', samplerate=sample_rate, channels=len(output_audio_data.shape)) as f:
             f.write(output_audio_data)
         st.audio(filename, format='audio/wav')
